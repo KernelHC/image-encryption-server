@@ -9,8 +9,6 @@
 
 typedef void* Data;
 
-pthread_mutex_t queue_lock;
-
 typedef struct q_node* QueueNode;
 
 QueueNode queueNodeCreate(int, char*, Data, size_t);

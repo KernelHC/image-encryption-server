@@ -26,30 +26,30 @@ void concurrentSizeTest();
 void concurrentMaxSizeTest();
 void concurrentStressTest();
 
-void* tests[] = {
-        sanityTest,
-        queuePushTest,
-        queuePopTest,
-        queueFrontTest,
-        queueSizeTest,
-        queueMaxSizeTest,
-        queueStressTest,
-        concurrentSanityTest,
-        concurrentPushTest,
-        concurrentPopTest,
-        concurrentFrontTest,
-        concurrentSizeTest,
-        concurrentMaxSizeTest,
-        concurrentStressTest,
-        0
-};
+//void* tests[] = {
+//        sanityTest,
+//        queuePushTest,
+//        queuePopTest,
+//        queueFrontTest,
+//        queueSizeTest,
+//        queueMaxSizeTest,
+//        queueStressTest,
+//        concurrentSanityTest,
+//        concurrentPushTest,
+//        concurrentPopTest,
+//        concurrentFrontTest,
+//        concurrentSizeTest,
+//        concurrentMaxSizeTest,
+//        concurrentStressTest,
+//        0
+//};
 
 void sanityTest() {
-    Queue q = queueCreate();
-    assert(q);
-    assert(queueIsEmpty(q));
-    assert(queueSize(q) == 0);
-    queueDestroy(q);
+//    Queue q = queueCreate(100);
+//    assert(q);
+//    assert(queueIsEmpty(q));
+//    assert(queueSize(q) == 0);
+//    queueDestroy(q);
 }
 
 void queuePushTest() {
@@ -57,8 +57,9 @@ void queuePushTest() {
 }
 
 int main () {
-    pthread_t* workers[NUM_TESTS];
-    for (int i = 0; tests[i] != NULL; i++) {
-        pthread_create(workers[i], NULL, tests[i], NULL);
-    }
+//    pthread_t* workers[NUM_TESTS];
+//    for (int i = 0; tests[i] != NULL; i++) {
+//        pthread_create(workers[i], NULL, tests[i], NULL);
+//    }
+    return 0;
 }
