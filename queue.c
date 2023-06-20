@@ -5,6 +5,9 @@
 #include <malloc.h>
 #include <string.h>
 
+#define SUCCESS (true)
+#define FAILURE (false)
+
 //*************************************************** QueueNode ******************************************************//
 
 struct q_node {
@@ -15,6 +18,7 @@ struct q_node {
     QueueNode next;
 };
 
+
 QueueNode queueNodeCreate(int id, char* name, Data data, size_t size) {
     QueueNode new_node = malloc(sizeof (*new_node));
     new_node->id = id;
@@ -24,6 +28,7 @@ QueueNode queueNodeCreate(int id, char* name, Data data, size_t size) {
     new_node->next = NULL;
     return new_node;
 }
+
 
 QueueNode queueNodeCopy(QueueNode to_copy) {
     if (!to_copy) return NULL;
@@ -42,6 +47,7 @@ struct queue_t {
     size_t max_size;
 };
 
+
 Queue queueCreate(size_t max_size) {
     Queue new_q = malloc(sizeof (*new_q));
     new_q->head = new_q->tail = NULL;
@@ -49,6 +55,53 @@ Queue queueCreate(size_t max_size) {
     new_q->max_size = max_size;
     return new_q;
 }
+
+
+bool queuePush(Queue q, QueueNode new_node) {
+    if (!q || !new_node || q->size == q->max_size) return FAILURE;
+    q->tail->next = new_node;
+    q->tail = new_node;
+    q->size++;
+    return SUCCESS;
+}
+
+
+QueueNode queuePop(Queue q) {
+    if (!q || q->size == 0) return NULL;
+    QueueNode popped_node = q->head;
+    q->head = q->head->next;
+    q->size--;
+    return popped_node;
+}
+
+
+QueueNode queueFront(Queue q) {
+    if (!q || q->size == 0) return NULL;
+    return queueNodeCopy(q->head);
+}
+
+
+size_t queueSize(Queue q) {
+    return q->size;
+}
+
+
+bool queueIsEmpty(Queue q) {
+    return q->size == 0;
+}
+
+
+QueueNode queueGetNodeByID(Queue q, int id) {
+    if (!q) return NULL;
+    QueueNode ptr = q->head;
+    while(ptr) {
+        if (ptr->id == id) return queueNodeCopy(ptr);
+        ptr = ptr->next;
+    }
+    return NULL;
+}
+
+
 
 //********************************************************************************************************************//
 

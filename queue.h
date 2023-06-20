@@ -22,7 +22,7 @@ typedef struct queue_t* Queue;
 
 Queue queueCreate(size_t);
 void queueDestroy(Queue);
-void queuePush(Queue, QueueNode);
+bool queuePush(Queue, QueueNode);
 QueueNode queuePop(Queue);
 QueueNode queueFront(Queue);
 size_t queueSize(Queue);
